@@ -70,7 +70,7 @@ function Write-Json2File ($domain, $ContentType) {
         # the next 2 statements are not needed
         # the purpose is to create an id for use with Azure CosmosDB and remove redundant data
         $content|foreach-object{$_|add-member -membertype noteproperty -name id -value $_.objectID}
-        $content| % {$_.PSObject.Properties.Remove('_highlightResult')}
+        $content| ForEach-Object {$_.PSObject.Properties.Remove('_highlightResult')}
    
         if ($pagenum -eq 0) { 
             $rjson = $response.content | ConvertFrom-Json -Depth 48
