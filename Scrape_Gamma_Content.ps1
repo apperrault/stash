@@ -33,7 +33,7 @@ function Get-HeaderSubscriber ($domain){
         "Referer" = "https://" + $url.Host;
         "Content-type" = "application/json"
         }
-    $domainfile = "C:\DB\Gamma\session\$domain.html"
+    $domainfile = "C:\Users\tatooine\OneDrive\DB\Gamma\session\$domain.html"
     $groups = Get-Content -Path $domainfile | Select-String -Pattern "window.env\s+=\s(.+);"
     $keys = $groups.Matches.groups[1].Value | ConvertFrom-Json
     
@@ -57,7 +57,7 @@ function Write-Json2File ($domain, $ContentType) {
         photos = 'all_photosets_latest_desc'
     }
     $indexName = $content_type[$ContentType]
-    $jsonbase = "C:\DB\Gamma\json\" + $domain + "\"
+    $jsonbase = "C:\Users\tatooine\OneDrive\DB\Gamma\json\" + $domain + "\"
     if (!(Test-Path $jsonbase)) {New-Item -ItemType "directory" -Path $jsonbase}
     #$network = "Devil's Film"
     do {
@@ -80,7 +80,7 @@ function Write-Json2File ($domain, $ContentType) {
     
         if ($hits -eq 0){continue}
         $filejson = -join($jsonbase,$domain,"_",$ContentType,"_",$page,".json")
-        #$content | ConvertTo-Json -Depth 48 | Out-File -FilePath $filejson
+        $content | ConvertTo-Json -Depth 48 | Out-File -FilePath $filejson
         $contents.AddRange($content)
         $pagenum++
 
@@ -127,14 +127,14 @@ Get-HeaderGamma -domain "addicted2girls"
 
 $contentlist = @('scenes','movies','actors','photos','channels')
 
-$domains =@('addicted2girls','zerotolerancefilms','adulttime','activeduty'`
+$domains =@('tabooheat','asgmax','adulttime','activeduty'`
             ,'evilangel',"dfxtra","asgmax","girlfriendsfilms"`
             ,"biphoria","genderxfilms","xempire","zerotolerancefilms"`
             ,"gangbangcreampie","touchmywife","gloryholesecrets","interracialvision","wicked"`
             ,"tabooheat","filthykings"`
             ,"ragingstallion","falconstudios"`
             )
-$domain = $domains[20] #set to dogfart for someone
+$domain = $domains[7] #set to dogfart for someone
 Foreach ($content in $contentlist){
     Write-Json2File -domain $domain -ContentType $content
 }

@@ -93,7 +93,7 @@ $studios = ("brazzers")
 $ContentTypes = @("gallery")
 foreach ($ContentType in $ContentTypes ) {
     foreach ($studio in $studios) {
-        $filedir = "C:\DB\Mindgeek\json\$ContentType"
+        $filedir = "C:\Users\tatooine\OneDrive\DB\Mindgeek\json\$ContentType"
         $filepath = Join-Path -Path $filedir -ChildPath "$studio.json"
         if (!(Test-Path $filedir)) {New-Item -ItemType "directory" -Path $filedir}
         Write-Host "Downloading: $studio" 
@@ -110,10 +110,10 @@ $studios = ("bangbros","realitykings","twistys","milehigh", "biempire", `
  "seancody", "iconmale", "realitydudes", "spicevids" )
 
 $ContentTypes = @("actor", "scene", "movie")
-$ContentTypes = @("gallery")
+$ContentTypes = @("scene")
 foreach ($ContentType in $ContentTypes ) {
     foreach ($studio in $studios[1]) {
-        $filedir = "C:\DB\Mindgeek\json\$ContentType"
+        $filedir = "C:\Users\tatooine\OneDrive\DB\Mindgeek\json\$ContentType"
         $filepath = Join-Path -Path $filedir -ChildPath "$studio.json"
         if (!(Test-Path $filedir)) {New-Item -ItemType "directory" -Path $filedir}
         Write-Host "Downloading: $studio" 
