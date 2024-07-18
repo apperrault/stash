@@ -3,14 +3,17 @@ function Get-HeaderMG (){
         [ValidateSet("bangbros","realitykings","twistys","milehigh", "biempire", `
         "babes", "erito", "mofos", "fakehub", "sexyhub", "propertysex", "metrohd",`
         "brazzers", "milfed", "gilfed", "dilfed", "men", "whynotbi", `
-        "seancody", "iconmale", "realitydudes","spicevids" ,ErrorMessage="Error: studio argumement is not supported" )]
+        "seancody", "iconmale", "realitydudes","spicevids")] 
         [String]$studio
      )
     #these are used to get the API key which controls which studio you can scrape
 
     $useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36"
-    [uri]$urlsite = "www." + $studio + ".com"
-    $webr = Invoke-WebRequest -UseBasicParsing -Uri $urlsite -Method HEAD
+    [uri]
+    $urlsite = "www." + $studio + ".com"
+    $webr = Invoke-WebRequest -UseBasicParsing -Uri 
+    $urlsite 
+    -Method HEAD
     $iname = $webr.Headers.'Set-Cookie'
     $instance = $iname.Split(';')
     $apikey = $instance[0].Split('=')[1]
@@ -68,7 +71,7 @@ function Get-MaxPages ($meta){
 function Get-StudioJson ($groupID = $null, $studio, $ContentType ){
     $scenelist = New-Object -TypeName System.Collections.ArrayList
     $params = Set-QueryParameters -studio $studio -ContentType $ContentType
-    $scenes0 = Invoke-RestMethod @params 
+    $scenes0 = Invoke-RestMethod
     $limit = $scenes0.meta.count
     $maxpage = Get-MaxPages -meta $scenes0.meta
 
@@ -93,7 +96,7 @@ $studios = ("brazzers")
 $ContentTypes = @("gallery")
 foreach ($ContentType in $ContentTypes ) {
     foreach ($studio in $studios) {
-        $filedir = "C:\Users\tatooine\OneDrive\DB\Mindgeek\json\$ContentType"
+        $filedir = "C:\DB\Mindgeek\json\$ContentType"
         $filepath = Join-Path -Path $filedir -ChildPath "$studio.json"
         if (!(Test-Path $filedir)) {New-Item -ItemType "directory" -Path $filedir}
         Write-Host "Downloading: $studio" 
@@ -110,10 +113,10 @@ $studios = ("bangbros","realitykings","twistys","milehigh", "biempire", `
  "seancody", "iconmale", "realitydudes", "spicevids" )
 
 $ContentTypes = @("actor", "scene", "movie")
-$ContentTypes = @("scene")
+$ContentTypes = @("gallery")
 foreach ($ContentType in $ContentTypes ) {
     foreach ($studio in $studios[1]) {
-        $filedir = "C:\Users\tatooine\OneDrive\DB\Mindgeek\json\$ContentType"
+        $filedir = "C:\DB\Mindgeek\json\$ContentType"
         $filepath = Join-Path -Path $filedir -ChildPath "$studio.json"
         if (!(Test-Path $filedir)) {New-Item -ItemType "directory" -Path $filedir}
         Write-Host "Downloading: $studio" 
