@@ -3,7 +3,7 @@ function Get-HeaderMG (){
         [ValidateSet("bangbros","realitykings","twistys","milehigh", "biempire", `
         "babes", "erito", "mofos", "fakehub", "sexyhub", "propertysex", "metrohd",`
         "brazzers", "milfed", "gilfed", "dilfed", "men", "whynotbi", `
-        "seancody", "iconmale", "realitydudes","spicevids" ,ErrorMessage="Error: studio argumement is not supported" )]
+        "seancody", "iconmale", "realitydudes","spicevids","sweetheartvideo","doghousedigital" ,ErrorMessage="Error: studio argumement is not supported" )]
         [String]$studio
      )
     #these are used to get the API key which controls which studio you can scrape
@@ -88,24 +88,24 @@ function Get-StudioJson ($groupID = $null, $studio, $ContentType ){
 $studios = ("bangbros","realitykings","twistys","milehigh", "biempire", `
  "babes", "erito", "mofos", "fakehub", "sexyhub", "propertysex", "metrohd",`
  "brazzers", "milfed", "gilfed", "dilfed", "men", "whynotbi", `
- "seancody", "iconmale", "realitydudes", "spicevids" )
+ "seancody", "iconmale", "realitydudes", "spicevids", "sweetheartvideo","doghousedigital" )
  $ContentTypes = @("actor", "scene", "movie")
 
 #this is a simple check to make sure BiEmpire is working
 # this will create a directory called "C:\DB\Mindgeek\json\BiEmpire"
 #big studios like BiEmpire and RealityKings may hang due to low memory
 #I know it works with 32GB RAM and maybe 16GB
-$studios = ("biempire")
-foreach ($ContentType in $ContentTypes ) {
-    foreach ($studio in $studios) {
-        $filedir = "C:\DB\Mindgeek\json\$studio"
-        $filepath = Join-Path -Path $filedir -ChildPath "$ContentType.json"
-        if (!(Test-Path $filedir)) {New-Item -ItemType "directory" -Path $filedir}
-        Write-Host "Downloading: $studio : $ContentType" 
-        $json = Get-StudioJson -studio $studio -ContentType $ContentType
-        $json | ConvertTo-Json -Depth 32 | Out-File -FilePath $filepath
-    }
-}
+# $studios = ("doghousedigital")
+# foreach ($ContentType in $ContentTypes ) {
+#     foreach ($studio in $studios) {
+#         $filedir = "C:\Users\tatooine\OneDrive\DB\Mindgeek\json\$studio"
+#         $filepath = Join-Path -Path $filedir -ChildPath "$ContentType.json"
+#         if (!(Test-Path $filedir)) {New-Item -ItemType "directory" -Path $filedir}
+#         Write-Host "Downloading: $studio : $ContentType" 
+#         $json = Get-StudioJson -studio $studio -ContentType $ContentType
+#         $json | ConvertTo-Json -Depth 32 | Out-File -FilePath $filepath
+#     }
+# }
 
 #this part below is a loop do not run this unless you want all data from all studios.
 #it may not work for studios which to not support movies
@@ -114,7 +114,7 @@ foreach ($ContentType in $ContentTypes ) {
 $ContentTypes = @("actor", "scene", "movie")
 foreach ($ContentType in $ContentTypes ) {
     foreach ($studio in $studios) {
-        $filedir = "C:\DB\Mindgeek\json\$studio"
+        $filedir = "C:\Users\tatooine\OneDrive\DB\Mindgeek\json\$studio"
         $filepath = Join-Path -Path $filedir -ChildPath "$ContentType.json"
         if (!(Test-Path $filedir)) {New-Item -ItemType "directory" -Path $filedir}
         Write-Host "Downloading: $studio : $ContentType" 
