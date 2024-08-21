@@ -33,7 +33,7 @@ function Get-HeaderSubscriber ($domain){
         "Referer" = "https://" + $url.Host;
         "Content-type" = "application/json"
         }
-    $domainfile = "C:\Users\tatooine\OneDrive\DB\Gamma\session\$domain.html"
+    $domainfile = "C:\DB\Gamma\session\$domain.html"
     $groups = Get-Content -Path $domainfile | Select-String -Pattern "window.env\s+=\s(.+);"
     $keys = $groups.Matches.groups[1].Value | ConvertFrom-Json
     
@@ -57,7 +57,7 @@ function Write-Json2File ($domain, $ContentType) {
         photos = 'all_photosets_latest_desc'
     }
     $indexName = $content_type[$ContentType]
-    $jsonbase = "C:\Users\tatooine\OneDrive\DB\Gamma\json\" + $domain + "\"
+    $jsonbase = "C:\DB\Gamma\json\" + $domain + "\"
     if (!(Test-Path $jsonbase)) {New-Item -ItemType "directory" -Path $jsonbase}
     #$network = "Devil's Film"
     do {
@@ -99,31 +99,31 @@ Foreach ($content in $contentlist){
 # this is for manual operation
 # just change the domain and content type to suit.
 
-$domain = $domains[1]
-Foreach ($content in $contentlist){
-    Write-Json2File -domain $domain -ContentType $content
-}
+# $domain = $domains[1]
+# Foreach ($content in $contentlist){
+#     Write-Json2File -domain $domain -ContentType $content
+# }
 
-$domain = "dfxtra"
-$ContentType = "channels"
-Write-Json2File -domain $domain -ContentType $ContentType
+# $domain = "dfxtra"
+# $ContentType = "channels"
+# Write-Json2File -domain $domain -ContentType $ContentType
 
-$domain = "addicted2girls"
-$ContentType = "actors"
-Write-Json2File -domain $domain -ContentType $ContentType
+# $domain = "addicted2girls"
+# $ContentType = "actors"
+# Write-Json2File -domain $domain -ContentType $ContentType
 
 
-$domain = "addicted2girls"
-$ContentType = "movies"
-Write-Json2File -domain $domain -ContentType $ContentType
+# $domain = "addicted2girls"
+# $ContentType = "movies"
+# Write-Json2File -domain $domain -ContentType $ContentType
 
-$header = Get-HeaderSubscriber -domain "blowpass"
+# $header = Get-HeaderSubscriber -domain "blowpass"
 
-$domain =  "xempire"
-$ContentType = "actors"
-Write-Json2File -domain $domain -ContentType $ContentType
+# $domain =  "xempire"
+# $ContentType = "actors"
+# Write-Json2File -domain $domain -ContentType $ContentType
 
-Get-HeaderGamma -domain "addicted2girls"
+# Get-HeaderGamma -domain "addicted2girls"
 
 $contentlist = @('scenes','movies','actors','photos','channels')
 
