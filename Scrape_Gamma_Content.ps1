@@ -90,8 +90,11 @@ function Write-Json2File ($domain, $ContentType) {
 }
 
 $contentlist = @('scenes','movies','actors','photos','channels')
-$domains =@('addicted2girls','zerotolerancefilms','adulttime','activeduty','girlsway','lethalhardcore')
-$domain = $domains[4] #set to Adult Time for someone
+$domains =@('asgmax','adulttime','girlfriendsfilms'`
+            ,"biphoria","genderxfilms","wicked"`
+            ,"ragingstallion","falconstudios"`
+            )
+$domain = $domains[6] #set to Adult Time for someone
 Foreach ($content in $contentlist){
     Write-Json2File -domain $domain -ContentType $content
 }
@@ -127,14 +130,11 @@ Foreach ($content in $contentlist){
 
 $contentlist = @('scenes','movies','actors','photos','channels')
 
-$domains =@('tabooheat','asgmax','adulttime','activeduty'`
-            ,'evilangel',"dfxtra","asgmax","girlfriendsfilms"`
-            ,"biphoria","genderxfilms","xempire","zerotolerancefilms"`
-            ,"gangbangcreampie","touchmywife","gloryholesecrets","interracialvision","wicked"`
-            ,"tabooheat","filthykings"`
+$domains =@('asgmax','adulttime','girlfriendsfilms'`
+            ,"biphoria","genderxfilms","wicked"`
             ,"ragingstallion","falconstudios"`
             )
-$domain = $domains[7] #set to dogfart for someone
+$domain = $domains[6] #set to dogfart for someone
 Foreach ($content in $contentlist){
     Write-Json2File -domain $domain -ContentType $content
 }
